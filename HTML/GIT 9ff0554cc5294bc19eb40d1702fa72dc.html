@@ -1,0 +1,735 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>GIT</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7a2fc070-52b2-41d6-91dd-fbeb24278f8f" class="page sans"><header><img class="page-cover-image" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/comandos-git.png" style="object-position:center 51.94%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/pngegg.png"/></div><h1 class="page-title">GIT</h1></header><div class="page-body"><p id="7972b595-2530-4e80-8e54-90fa541e2b87" class="">Sistema Distribuido Seguro</p><p id="8c02a0e2-4b62-498f-9d74-64b7d023ce58" class="">Sistema de versionamento de código distribuido<div class="indented"><p id="2f8b2193-9ae4-4fc0-8d08-302e7fd23fcc" class="">
+</p></div></p><h3 id="2095d28f-fe96-4914-9962-4016d290723b" class="">Comandos Git</h3><p id="b8cdd282-bec1-457d-a701-b4e3ac37d31f" class="">
+</p><table id="8770d637-8ed1-47dc-b21f-f56c2e5d18b2" class="simple-table"><thead class="simple-table-header"><tr id="8c03ea84-ce69-404b-8602-6014cffda107"><th id="|]?U" class="block-color-blue simple-table-header" style="width:108px">Windows</th><th id="a\Wy" class="block-color-orange simple-table-header" style="width:95px">Unix</th><th id="EMs_" class="simple-table-header-color simple-table-header" style="width:156.33333333333334px"></th></tr></thead><tbody><tr id="5496c4a2-4750-4971-946c-0e78060f8cdc"><td id="|]?U" class="block-color-blue" style="width:108px">cd</td><td id="a\Wy" class="block-color-orange" style="width:95px">cd</td><td id="EMs_" class="" style="width:156.33333333333334px">mudar de diretório</td></tr><tr id="c1878830-2af1-436e-9f77-e1caec02a7b6"><td id="|]?U" class="block-color-blue" style="width:108px">cd ..</td><td id="a\Wy" class="block-color-orange" style="width:95px">cd ..</td><td id="EMs_" class="" style="width:156.33333333333334px">voltar um nível de diretório</td></tr><tr id="de07216d-b06b-4939-b753-ab4d9ee28ee5"><td id="|]?U" class="block-color-blue" style="width:108px">dir</td><td id="a\Wy" class="block-color-orange" style="width:95px">ls</td><td id="EMs_" class="" style="width:156.33333333333334px">listar o que tem dentro do diretório</td></tr><tr id="59db1b6f-ff90-4cf2-b222-ce8084a794d8"><td id="|]?U" class="block-color-blue" style="width:108px">mkdir</td><td id="a\Wy" class="block-color-orange" style="width:95px">mkdir</td><td id="EMs_" class="" style="width:156.33333333333334px">criação de diretório</td></tr><tr id="021f0c97-9d9a-4c42-8849-a53e4f5348a2"><td id="|]?U" class="block-color-blue" style="width:108px"></td><td id="a\Wy" class="block-color-orange" style="width:95px"></td><td id="EMs_" class="" style="width:156.33333333333334px"></td></tr><tr id="c2572f1d-256a-4ba4-aaaf-35179750fe04"><td id="|]?U" class="block-color-blue" style="width:108px">del / rmdir</td><td id="a\Wy" class="block-color-orange" style="width:95px">rm -rf</td><td id="EMs_" class="" style="width:156.33333333333334px">deletar diretório</td></tr><tr id="6287d4ec-13eb-429c-a3fc-77f2989ab791"><td id="|]?U" class="block-color-blue" style="width:108px">cls</td><td id="a\Wy" class="block-color-orange" style="width:95px">clear</td><td id="EMs_" class="" style="width:156.33333333333334px">limpar tela</td></tr><tr id="c6616ba5-2d43-46a8-a31b-c5a82572cede"><td id="|]?U" class="block-color-blue" style="width:108px">tab</td><td id="a\Wy" class="block-color-orange" style="width:95px">tab</td><td id="EMs_" class="" style="width:156.33333333333334px">auto completar
+</td></tr><tr id="f2ffb2c9-8ed3-4a6a-a2e2-89e3491f9a77"><td id="|]?U" class="block-color-blue" style="width:108px">exit</td><td id="a\Wy" class="block-color-orange" style="width:95px">exit</td><td id="EMs_" class="" style="width:156.33333333333334px">finalizar terminal</td></tr><tr id="6b57ceda-288a-450e-8d24-1ff2b3c03008"><td id="|]?U" class="block-color-blue" style="width:108px">up arrow</td><td id="a\Wy" class="block-color-orange" style="width:95px">up arrow</td><td id="EMs_" class="" style="width:156.33333333333334px">navegar por comandos já utilizados</td></tr><tr id="84b9ef7a-30bc-4eff-8e05-1b9a49a294ff"><td id="|]?U" class="block-color-blue" style="width:108px">echo</td><td id="a\Wy" class="block-color-orange" style="width:95px">echo</td><td id="EMs_" class="" style="width:156.33333333333334px">devolve o que escreveu no terminal</td></tr></tbody></table><p id="2a9cf733-74c9-4f1f-a7de-d89676ff5152" class="">
+</p><p id="bf50dfe1-21eb-45e1-8ffa-8bda3647f3d3" class="">
+</p><p id="42014bf7-e8cd-4f7c-8509-83515823e91f" class="">$ echo hello &gt; hello.txt;</p><p id="bb5cfe5f-ca94-43a2-b3e6-f0a95a0851e5" class="">o “ &gt; “ é um redirecionador de fluxo, neste caso ele vai pegar o hello e jogar dentro do arquivo hello.txt</p><p id="0e6b7a26-2187-4b1f-8a31-67077cc45fc9" class="">
+</p><p id="5086613b-e02e-4a65-a835-9a06dcdf9cbc" class="">No windows o comando <mark class="highlight-blue"><strong>del</strong></mark>, não deleta o diretório de forma recursiva, só apaga o conteúdo que possui dentro.</p><p id="9d5b1ed2-4238-47cc-95d3-cb399720aefc" class="">
+</p><p id="ad8ce78e-05b5-4e13-b6cf-bd2e37305542" class=""><mark class="highlight-blue">Windows</mark>: rmdir workspack /S /Q = o “s” Exclui arquivos especificados do diretório atual e de todos os subdireários. Exibe os nomes dos arquivos à medida que eles estão sendo excluídos e o “q” Especifica o modo silencioso. Não é solicitado que você exclua a confirmação. </p><p id="4a4815f7-b1a4-4857-b272-58d4797136f5" class=""><mark class="highlight-orange">Unix</mark>: rm -rf workspace = o “ r “ é de recursivo e o “ f “ é de forçar</p><p id="94d233a6-c0f7-4a5f-b90a-03d3f92a8dd1" class="">
+</p><p id="7dd3cccc-5367-4a12-99f9-6014494d0d0e" class=""><mark class="highlight-pink"><strong>Strings</strong></mark>
+são sequências de caracteres alfanuméricos (letras, números e/ou símbolos) amplamente usadas em programação.</p><p id="847afa84-d71d-4331-92ba-d7bc498b0110" class="">
+</p><h2 id="bdb00963-79f8-40ec-84d7-00b491189ea0" class="">Git por baixo dos panos</h2><p id="6e99c2d5-b306-46ad-8658-f8afe1700719" class="">
+</p><p id="2113c866-0d98-40a5-a1bd-8bfb7b5d60ef" class="">SHA1 (secure hash algorithm), conjunto de funções hash criptográficas projetadas pela NSA; A encriptação gera conjunto de caracteres identificador de 40 dígitos</p><figure id="9ff0554c-c529-4bc1-9eb4-0d1702fa72dc" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled.png"><img style="width:1027px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled.png"/></a></figure><p id="c1025e2e-f499-4eee-94ec-e8471326f3e3" class=""><mark class="highlight-orange">$ openssl sha1 gitgit.txt</mark> ⇒ SHA1(gitgit.txt)= da39a3ee5e6b4b0d3255bfef95601890afd80709</p><p id="d6b9797e-6f4e-45e1-a911-9555004c9516" class="">Após modificar o conteúdo dentro do arquivo gitgit.txt</p><p id="d855cad0-9bc2-4bdb-b4f3-892bedcfba74" class=""><mark class="highlight-orange">$ openssl sha1 gitgit.txt</mark> ⇒ SHA1(gitgit.txt)= f61e90f629c3539a2b1050ab63dcb8f2b2ce6504<div class="indented"><p id="8ff27be2-9e6f-46e9-9b4c-ab97f5d7cab7" class="">Toda vez que você altera algum conteúdo dentro do arquivo citado, ele gera um novo identificador único de 40 dígitos.</p></div></p><p id="2432a380-b0c9-45da-88ca-0476ddbce8ef" class="">Caso necessite desfazer a alteração e você rode novamente o comando <mark class="highlight-orange">$ openssl sha1 {nome do arquivo}</mark>, ele mostrará novamente o mesmo identificador antes da alteração. Tornando-o assim fácil a identificação de alterações.</p><p id="7755e596-1072-424c-a03c-6ece304d0d97" class="">
+</p><h2 id="e0f3debc-8e6f-433f-824d-d14ade9079ad" class="">Objetos internos do Git</h2><p id="ff5034f2-b3e0-41d6-b530-fb732655b8e3" class="">
+</p><h3 id="2f97d25d-93c4-4a89-bba5-e03b45958565" class="">Blob = bolha</h3><figure id="26880f25-3e73-4664-95e6-49bc8d1a42f9" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%201.png"><img style="width:819px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%201.png"/></a></figure><p id="cc561ab9-0405-4f68-9c1b-b29641cf62b7" class="">$ <mark class="highlight-orange">git hash-object</mark> = função do git</p><p id="6a5a3295-e0f4-4eec-a66d-22c3cc5e3e54" class="">$ <mark class="highlight-blue">—stdin</mark> = flag que espera receber um arquivo.</p><p id="d58e8091-ec1f-43c1-aaad-14887ddedac2" class="">
+</p><p id="389d1ed6-eb77-4f1f-a7cd-10a40c672e0c" class="">Neste exemplo ao rodar o comando $ <mark class="highlight-orange">echo -e ‘conteudo” | openssl sha1</mark>, ele gera um novo identificador de 40 dígitos, mas porque isso acontece?</p><p id="4b5de194-0d10-4fec-b9b9-1b00b80023e3" class="">
+</p><figure id="b9f60074-b0b6-4027-8cdc-deb321be7a54" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%202.png"><img style="width:373px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%202.png"/></a></figure><p id="d69baa66-355a-4528-b5a2-3ca94809a1bd" class="">Os arquivos ficam guardado dentro do objeto “ Blob “ que contém metadados, onde vai ter o tipo do objeto, tamanho da string  ou arquivo, o \0 e o conteúdo do arquivo, onde ele guarda apenas o sha1 que é o identificar deste blob.</p><p id="02de243d-abf7-46fb-8d77-11e96b87db73" class="">
+</p><p id="84532fc2-b7a0-48b4-a691-c730527ecfbd" class="">Dessa vez ao utilizar os metadados na string no comando $ <mark class="highlight-orange">echo -e ‘blob 9\0conteudo’ | openssl sha1</mark>. o identificador vai ser o mesmo.</p><figure id="92a5b9a4-276c-4c80-b4a0-f47268d75684" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%203.png"><img style="width:791px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%203.png"/></a></figure><p id="30d1735e-ccee-423e-a994-e564d82c7066" class="">
+</p><h3 id="73c877c6-5835-4d3f-8358-77aaddc2c5f4" class="">Tree = Árvores</h3><p id="d6bb876c-1a90-4bce-85e9-8d343d71a0eb" class="">
+</p><p id="8e5a93c7-fdbe-4399-8a74-20a107cc3ee6" class="">Contém metadados e aponta para os blob’s, armazena o nome do arquivo e sha1.</p><p id="3773ccaa-899f-4f96-adad-f51302916070" class="">Ela é responsável por montar a estrutura de onde os arquivos estão localizados, ela aponta para blob’s ou outras Tree’s, e que também possuem sha1 desses metadados; </p><p id="3d051990-7af7-42e3-80b0-3f0a2930ef41" class=""><strong>Obs</strong>: blob’s tem o sha1 do arquivo, a Tree apontam para essas blobs e possuem sha1 com os metadados das Tree.</p><figure id="c81a0699-6a2f-4b7c-b4a3-87b98dbd8296" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%204.png"><img style="width:947px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%204.png"/></a></figure><p id="4c08e897-dda3-4e20-a452-bd98b22f170b" class="">
+</p><h3 id="28d2c2ac-3e0f-4a51-a6d3-b2c9e9d19842" class="">Commit</h3><p id="e3a6f731-3a65-4640-93ef-a62a87d14333" class="">
+</p><p id="e0dfacf8-2697-4ebc-828b-a311bc98c1b2" class="">O commit significa alterações que apontam para uma tree, para parente (o ultimo commit realizado), para um autor e mensagem. Também possuem timestamp, onde leva data e hora da criação.</p><p id="c38bcdb4-b887-403b-9706-80dcc3cb6a3b" class="">
+</p><figure id="cb6a9cc2-9557-4eb4-b997-6acba89e1181" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%205.png"><img style="width:591px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%205.png"/></a></figure><p id="03438726-6b6f-405e-82c9-7ac2658ebd30" class="">
+</p><p id="3e35c5d0-0522-4877-932d-01b3ada92edc" class="">Possuem criptação identificador de 40 dígitos, onde alterando uma blob ele gera um sha1 da blob que possua vez altera os metadados das tree, qualquer modificação reflete nas tree e no commit por isso se torna confiável. </p><figure id="b2a371b8-c5fb-443d-a3e7-c7f82710684e" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%206.png"><img style="width:805px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%206.png"/></a></figure><p id="06d2396f-7c36-4c90-b9e5-246ce18962a1" class="">
+</p><h1 id="bc3c11a3-0a5e-439d-a974-7c61fc96c435" class="">Chaves SSH</h1><p id="d1d71847-ef2a-48ad-84dd-9bce294dfb8f" class="">Chave SSH é uma forma segura encriptada para estabelecer uma conexão entre duas máquinas
+Github oferece 2 chaves, umas pública (direto pro Github) e uma privada (máquina pessoal), com elas fará o Github reconhecer nossa máquina como uma máquina confiável, assim reconhecendo todos repositorios que estiverem na nossa máquina por esse processo SSH. Então seremos capazes de enviar códigos sem precisar de senhas e autenticações. 
+
+</p><h3 id="c6a49726-5255-4a68-bf3d-1bb37659351d" class=""><strong>Diretório das chaves dentro do Github: </strong></h3><p id="d435758f-b28b-41b3-9d7d-92a2f3378555" class="">
+</p><p id="4d4d0b1d-ad9f-41a9-8b64-bc6148c2b3e9" class="">Depois de logado no Github, clique em sua foto de perfil no canto superior esquerdo e em seguinte se encaminhe até “Settings”
+</p><figure id="3f7651a1-10e3-41ed-b663-2aa7a0f95f4d" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%207.png"><img style="width:192px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%207.png"/></a></figure><p id="5490e088-2bc6-4e68-b2a0-c57108c31aed" class="">
+
+Após isso procure por SSH and GPG Key nas opções do lado esquerdo e clique em “New SSH Key”</p><figure id="1fd4f455-2bde-4ba7-bb9e-bd7c624489c7" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%208.png"><img style="width:1337px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%208.png"/></a></figure><p id="c1c74b97-bb12-497b-9413-e39a6e8a23da" class="">
+</p><h2 id="05265684-31fa-4d20-9780-d12d126ef88b" class=""><details open=""><summary>Comandos do Git Bash para gerar uma chave SSH para GitHub</summary></details></h2><div class="indented"><p id="f7447f00-140b-4dfd-a5dc-0926bd13f8df" class="">
+</p><p id="36dad4aa-7d78-465a-a8ef-09442a2b1ad1" class="">Dentro do terminal GitBash:</p><pre id="860a7e61-045d-48df-8231-b902a3122f04" class="code"><code>$ ssh-keygen -t ed25519 -C seuemail (GitHub)
+ed255 = tipo de encriptografia da chave
+-C precisa ser maiúsculo 
+</code></pre><figure id="50aae2a4-6a8d-491f-a199-2725c29beb23" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%209.png"><img style="width:594px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%209.png"/></a></figure><p id="86d89400-ac19-414b-9449-c568ee6f7c95" class="">
+</p><p id="e0d1fafe-142f-40bd-91e4-e9c05669956c" class="">Após presionar enter ele te mostrar onde essa Chave SSH será salva em seu PC, precione enter e ele criarar 2 chaves uma privada e uma .pub (pública)
+Mostrará seu fingerprint (indentidade da chave) tipo de encriptografia, local que foi salva, nome da encriptografia, etc. 
+</p><figure id="942b75e0-b01e-4c68-90fa-040f8d3e0d1e" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2010.png"><img style="width:1089px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2010.png"/></a></figure><figure id="44463c66-b219-4bf1-9359-fef0621c9dc4" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2011.png"><img style="width:349px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2011.png"/></a></figure><p id="85c4319f-4c78-469f-ac18-f858cb461e55" class="">
+Usando o comando a gente poderá ter a acesso ao conteúdo,  a chave pública que será usada no GitHub</p><pre id="096f88c2-cb81-4713-b96d-526e4d61373b" class="code"><code>$ cat id_ed25519.pub</code></pre><p id="d8d699c2-950a-442e-be9b-2e648f07b9a5" class="">
+<mark class="highlight-orange">
+</mark>id = identificação da chave e após ele o nome da chave
+</p><figure id="6b63e8a1-17c1-4e61-91be-e4bdf82a88f4" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2012.png"><img style="width:1226px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2012.png"/></a></figure><p id="438dd8b2-0f9d-49e0-bd0e-a12b335a6a74" class="">
+ Podemos copiar nosso SSH que será usado no GitHub 
+<mark class="highlight-red">Ps: Apenas enviar para o GitHub a sua chave pública (.pub) 
+</mark></p><p id="6de5d01f-d475-46cc-8bb2-16cd48e3b38d" class="">Após colocar chave no GitHub precisamos inicializar o SSH Agent para poder ligar a maquina com as chaves do GitHub</p><pre id="6cc41232-f172-47cc-bd5d-a937b4c6b6df" class="code"><code>$eval $(ssh-agent -s) </code></pre><p id="e465a790-5a7d-4aca-945a-99cb7e21e3a8" class=""><mark class="highlight-red">
+</mark>Ele te retornará seu Agent Pid que será o número do processo que estará rodando na sua maquina
+</p><figure id="8bb67d43-5d40-4d17-b562-0e98e618c42a" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2013.png"><img style="width:281px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2013.png"/></a></figure><p id="bf4d4767-fef7-4479-b23c-153c980e540e" class="">
+Agora podemos entregar nossa chave para o Agent Pid utilizando o comando</p><pre id="71aab9be-a54b-4e42-8f31-7b3c3a0cce37" class="code"><code>$ssh-add id_ed25519 </code></pre><p id="a09f64c5-312f-4176-9eb7-f61e91d6c0db" class="">
+Lembrando que temos que passar a nossa chave privada dessa vez, já que o Agent ficará encarregado de desencriptografar a mensagem. </p></div><h3 id="c4cf93d4-6119-4afc-970f-62219813bd32" class=""><details open=""><summary>Token de Acesso Pessoal</summary></details></h3><div class="indented"><p id="120aea53-6efd-42a4-922a-6b18b21262ec" class="">
+</p><p id="4d88f313-c464-48de-b900-839070058f99" class="">Terminado de criar navegaremos ate a chave usando o comando 
+</p><pre id="1d37c840-cca2-4294-9aa3-e2530bae60e0" class="code"><code>$cd /c/Users/Cid/.ssh (depois do c/ deverá coloca o diretório de onde foi salva sua chave)</code></pre><p id="468fee94-35e8-44f4-a3ff-55be3f73d9c5" class="">Ele listará as duas </p></div><h3 id="afc157e7-8be6-4ccf-bd88-60baaf47fda8" class="">Iniciando o git e criando um Commit</h3><p id="46ba2268-912f-427c-aeb2-d0dca13d149d" class="">
+</p><pre id="c7783632-6493-4faa-a7fe-63ac70eaf0e0" class="code"><code>$ git init - inicia o git dentro do repositório criando uma pasta “ .git “ oculta dentro do repositorio
+
+$ ls -a - mostra arquivos ocultos</code></pre><p id="ed3f0ddf-4af2-4181-82d7-cb0b5fcc2f18" class="">
+</p><p id="8ab8887c-44ac-4178-b074-3efbdedfada3" class="">Caso seja a primeira vez que esteja rodando o git, requer algumas configurações.</p><p id="c47f0324-9880-4000-af8a-8aac297f75e2" class="">
+</p><pre id="16010235-be66-4379-b794-bc6e10ff4bbe" class="code"><code>$ git config global user.email user.email “leonardocesar-pe2010@hotmail.com”
+
+$ git config --global user.name user.name Leonardo</code></pre><p id="c56f9b11-f54b-428b-8c6b-5f1aeded2e16" class="">
+</p><p id="42f80667-0b76-4ec4-9070-36eafcf55aa2" class="">Commitando</p><pre id="1c9a3474-3a33-472f-8556-99f4d275a82a" class="code"><code>$ git add *
+$ git commit -m “mensagem”</code></pre><p id="66821d09-93ae-4582-ab4b-cc8b5a963659" class="">
+</p><pre id="b1a85b8c-44d4-47ba-9994-62f845f26b72" class="code"><code>$ git status - mostra o status do git no momento atual</code></pre><p id="ffe053d8-5ad3-45c8-8895-9f3383af5f02" class="">
+</p><figure id="b3d3b856-690e-43ef-b95c-50d997cb41bb" class="image"><a href="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2014.png"><img style="width:547px" src="GIT%209ff0554cc5294bc19eb40d1702fa72dc/Untitled%2014.png"/></a></figure><p id="3a4230bd-28fc-4e41-8919-332b0f505464" class="">
+</p><h3 id="2ed4a647-75d6-454d-b58f-502b5ec1f55e" class="">GitHub</h3><pre id="5a2f6e4e-de28-40d9-92a0-9713c52949aa" class="code"><code>git config --global --unser user.name - remove no exemplo a configuração de nome do git</code></pre><p id="6ae35875-3fb4-4dc9-9709-c0afeb0d381a" class="">
+</p><p id="95d872e2-ada3-424f-a05f-004ddfd99b9f" class="">Adicionando origem para enviar os arquivos</p><pre id="1a2b8bb7-5098-4c1b-bec1-0698563e7c6d" class="code"><code>$ git remote add origin git@github.com:LeonardoCSR/livro-receitas.git</code></pre><p id="6cbf1326-97eb-46ac-8efc-0c4c07494e98" class="">
+</p><p id="c9c1178c-6cd6-4a5e-9732-076a2cbc652d" class="">Listar a lista de repositórios remoto</p><pre id="be843f68-04d9-41d0-ada5-9535b583135a" class="code"><code>$ git remote -v</code></pre><p id="ef7a6f35-942b-4694-a29e-2034c67e6dcf" class="">
+</p><p id="175934c7-a97a-44aa-95b1-9fda361637d3" class="">Comando para enviar o repositorio local para o remoto</p><pre id="0d16ced1-9047-4eba-b0d8-797422797471" class="code"><code>$ git push origin master</code></pre></div></article></body></html>
